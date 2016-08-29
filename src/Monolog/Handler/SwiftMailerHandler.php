@@ -43,7 +43,9 @@ class SwiftMailerHandler extends MailHandler
      */
     protected function send($content, array $records)
     {
+        $this->mailer->getTransport()->start();
         $this->mailer->send($this->buildMessage($content, $records));
+        $this->mailer->getTransport()->stop();
     }
 
     /**
